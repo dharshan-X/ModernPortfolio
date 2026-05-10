@@ -41,10 +41,10 @@ export default function Projects() {
     gsap.from('.project-card', {
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 60%',
+        start: 'top 85%',
       },
       y: 100,
-      opacity: 0,
+      autoAlpha: 0,
       stagger: 0.2,
       duration: 1.5,
       ease: 'power4.out',

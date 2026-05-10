@@ -7,28 +7,36 @@ gsap.registerPlugin(ScrollTrigger)
 
 const experiences = [
   {
-    year: '2022',
-    company: 'Stripe',
-    role: 'Senior Frontend Engineer',
+    year: '2026',
+    company: 'Agent Ecosystem',
+    role: 'Creator of ProjectYolo',
     period: 'Present',
-    desc: 'Redefining the global design system. Architecting high-performance components used by millions, focusing on accessibility and sub-millisecond render times.',
-    tags: ['Design Systems', 'React', 'Performance']
+    desc: 'Architecting ProjectYolo, an autonomous AI agent for desktop control and software engineering. Integrating real-time computer vision with LLM decision-making engines.',
+    tags: ['Autonomous Agents', 'AI', 'Desktop Control']
   },
   {
-    year: '2020',
-    company: 'Vercel',
-    role: 'Frontend Developer',
-    period: '2 Years',
-    desc: 'Built core features for the Vercel Dashboard. Optimized deployment pipelines and real-time visualization engines used by 50k+ daily active users.',
-    tags: ['Next.js', 'Turbopack', 'Analytics']
+    year: '2026',
+    company: 'Cloud Innovations',
+    role: 'Skylabs Founder',
+    period: 'Major Release',
+    desc: 'Launched Skylabs, a high-performance cloud infrastructure suite built with TypeScript. Optimized for ultra-fast deployment pipelines and scalable resource management.',
+    tags: ['TypeScript', 'Cloud Infra', 'Architecture']
   },
   {
-    year: '2018',
-    company: 'Figma',
-    role: 'Product Engineer',
+    year: '2025',
+    company: 'AI Research Lab',
+    role: 'Lead Developer',
+    period: '1 Year',
+    desc: 'Developed ActiveRAG, a specialized Retrieval-Augmented Generation model. Built NetGuard Pro, an enterprise-level network security dashboard for threat detection.',
+    tags: ['Python', 'RAG', 'Cybersecurity']
+  },
+  {
+    year: '2024',
+    company: 'Core Systems',
+    role: 'Software Engineer',
     period: '2 Years',
-    desc: 'Pioneered multiplayer cursor synchronization and prototype playback logic. Reduced browser memory footprint by 30% through custom GLSL shaders.',
-    tags: ['C++', 'Wasm', 'WebGL']
+    desc: 'Mastered memory management and low-level systems engineering. Built a foundation of 50+ open-source repositories exploring Python, Rust, and systems architecture.',
+    tags: ['Rust', 'Systems Engineering', 'Python']
   },
 ]
 
@@ -68,10 +76,10 @@ export default function Experience() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-40">
             <h2 className="text-[12vw] md:text-[180px] font-display font-bold leading-[0.8] uppercase opacity-5 select-none absolute left-0 right-0 text-center pointer-events-none">
-                HISTORY
+                EVOLUTION
             </h2>
             <div className="relative z-10 text-center">
-                <p className="text-primary font-bold tracking-[0.4em] uppercase text-sm mb-4">The Journey</p>
+                <p className="text-primary font-bold tracking-[0.4em] uppercase text-sm mb-4">Technical Roadmap</p>
                 <h2 className="text-5xl md:text-8xl font-display font-bold">MILESTONES</h2>
             </div>
         </div>
@@ -92,10 +100,10 @@ export default function Experience() {
                   </div>
                   
                   <h3 className="text-4xl md:text-6xl font-display font-bold text-text group-hover:text-primary transition-colors leading-tight">
-                    {exp.company}
+                    {exp.role}
                   </h3>
                   
-                  <p className="text-accent text-lg font-bold uppercase tracking-widest">{exp.role}</p>
+                  <p className="text-accent text-lg font-bold uppercase tracking-widest">{exp.company}</p>
                   
                   <p className="text-text-muted text-xl md:text-2xl leading-relaxed max-w-xl">
                     {exp.desc}
