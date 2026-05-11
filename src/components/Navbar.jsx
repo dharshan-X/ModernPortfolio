@@ -76,7 +76,7 @@ export default function Navbar() {
     <nav className="fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-[5000] flex justify-center w-full pointer-events-none px-4">
       <div 
         ref={navContainerRef}
-        className="glass rounded-full p-1.5 flex items-center gap-1 border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-visible pointer-events-auto"
+        className='glass rounded-full p-1.5 flex items-center gap-1 border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-visible pointer-events-auto translate-y-6'
       >
         {/* Animated Active Background */}
         <div 
@@ -117,5 +117,5 @@ export default function Navbar() {
         })}
       </div>
     </nav>
-  )
+  );
 }
