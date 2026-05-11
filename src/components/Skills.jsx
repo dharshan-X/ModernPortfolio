@@ -3,6 +3,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Box, Code2, Database, Layout, Smartphone, Zap } from 'lucide-react'
+import TextReveal from './TextReveal'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -73,7 +74,7 @@ export default function Skills() {
         <div className="flex items-end justify-between mb-24 border-b border-white/5 pb-12">
             <div>
                 <p className="text-primary font-bold tracking-[0.4em] uppercase text-[10px] mb-4">Competencies</p>
-                <h2 className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none">TECH STACK</h2>
+                <TextReveal as="h2" className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none">TECH STACK</TextReveal>
             </div>
             <div className="hidden md:block text-right">
                 <p className="text-text-muted text-lg max-w-[300px]">Engineered for high-availability and extreme performance.</p>
@@ -100,7 +101,7 @@ export default function Skills() {
                     >
                         <group.icon size={24} />
                     </div>
-                    <span className="text-[10px] font-mono text-mute uppercase tracking-widest">Type_0{i+1}</span>
+                    <span className="text-[10px] font-mono text-text-muted uppercase tracking-widest">Type_0{i+1}</span>
                   </div>
                   <h3 className="text-2xl font-display font-bold text-text mb-4">{group.category}</h3>
                 </div>

@@ -2,9 +2,21 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ArrowDownRight, Globe, Github, Linkedin, Mail } from 'lucide-react'
+import { useLenis } from './SmoothScroll'
+import MagneticButton from './MagneticButton'
 
 export default function Hero() {
   const containerRef = useRef(null)
+  const lenisRef = useLenis()
+
+  const scrollToAbout = () => {
+    if (lenisRef?.current) {
+      lenisRef.current.scrollTo('#about')
+    } else {
+      const el = document.querySelector('#about')
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.5 } })
@@ -45,21 +57,14 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 hero-snippet">
-            <button 
-              onClick={() => {
-                const el = document.querySelector('#about');
-                if (el) {
-                  window.scrollTo({
-                    top: el.offsetTop,
-                    left: 0,
-                    behavior: 'smooth'
-                  })
-                }
-              }}
-              className='w-[50px] h-[51px] rounded-full bg-primary text-black flex items-center justify-center hover:scale-110 transition-transform active:scale-95 shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer'
-            >
-               <ArrowDownRight size={20} strokeWidth={2.5} />
-            </button>
+            <MagneticButton strength={0.5} className="inline-block">
+              <button
+                onClick={scrollToAbout}
+                className='w-[50px] h-[51px] rounded-full bg-primary text-black flex items-center justify-center hover:scale-110 transition-transform active:scale-95 shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer'
+              >
+                 <ArrowDownRight size={20} strokeWidth={2.5} />
+              </button>
+            </MagneticButton>
           </div>
 
           <div className='flex items-center justify-center gap-8 mt-12 mb-8 translate-y-12'>

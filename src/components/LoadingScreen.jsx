@@ -67,7 +67,7 @@ export default function LoadingScreen({ onComplete }) {
               style={{ transform: 'scaleX(0)' }}
             />
           </div>
-          <div className="flex justify-between text-[10px] text-mute uppercase tracking-widest font-mono">
+          <div className="flex justify-between text-[10px] text-text-muted uppercase tracking-widest font-mono">
             <span>Systems Online</span>
             <span>Est. 2026</span>
           </div>

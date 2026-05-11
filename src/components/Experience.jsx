@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import TextReveal from './TextReveal'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -80,7 +81,7 @@ export default function Experience() {
             </h2>
             <div className="relative z-10 text-center">
                 <p className="text-primary font-bold tracking-[0.4em] uppercase text-sm mb-4">Technical Roadmap</p>
-                <h2 className="text-4xl sm:text-5xl md:text-8xl font-display font-bold">MILESTONES</h2>
+                <TextReveal as="h2" className="text-4xl sm:text-5xl md:text-8xl font-display font-bold">MILESTONES</TextReveal>
             </div>
         </div>
 

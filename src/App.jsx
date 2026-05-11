@@ -9,6 +9,7 @@ import Contact from './components/Contact'
 import CustomCursor from './components/CustomCursor'
 import SmoothScroll from './components/SmoothScroll'
 import LoadingScreen from './components/LoadingScreen'
+import ScrollVelocitySkew from './components/ScrollVelocitySkew'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -58,14 +59,16 @@ function App() {
       <SmoothScroll>
         <div className={`transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
           <Navbar />
-          <main className="overflow-x-hidden">
-            <Hero />
-            <About />
-            <Experience />
-            <Skills />
-            <Projects />
-            <Contact />
-          </main>
+          <ScrollVelocitySkew>
+            <main className="overflow-x-hidden">
+              <Hero />
+              <About />
+              <Experience />
+              <Skills />
+              <Projects />
+              <Contact />
+            </main>
+          </ScrollVelocitySkew>
         </div>
       </SmoothScroll>
     </div>

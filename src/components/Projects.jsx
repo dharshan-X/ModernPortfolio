@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ArrowUpRight } from 'lucide-react'
+import TextReveal from './TextReveal'
 
 const projects = [
   {
@@ -49,6 +50,24 @@ export default function Projects() {
       duration: 1.5,
       ease: 'power4.out',
     })
+
+    // Parallax effect on project images
+    const images = gsap.utils.toArray('.project-card img')
+    images.forEach((img) => {
+      gsap.fromTo(img,
+        { y: '-12%' },
+        {
+          y: '12%',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: img.closest('.project-card'),
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        }
+      )
+    })
   }, { scope: containerRef })
 
   return (
@@ -56,8 +75,8 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
             <div>
-                <h2 className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none mb-2 md:mb-4 uppercase">Selected</h2>
-                <h2 className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none mb-2 md:mb-4 uppercase gradient-text">Artifacts</h2>
+                <TextReveal as="h2" className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none mb-2 md:mb-4 uppercase">Selected</TextReveal>
+                <TextReveal as="h2" className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none mb-2 md:mb-4 uppercase gradient-text">Artifacts</TextReveal>
             </div>
             <p className="max-w-md text-text-muted text-base md:text-lg leading-relaxed text-left md:text-right">
               A showcase of my recent work in AI, Security, and Cloud-native systems.
@@ -74,7 +93,7 @@ export default function Projects() {
               <img 
                 src={project.image} 
                 alt={project.title} 
-                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                className="w-full h-full object-cover group-hover:scale-110"
               />
               
               {/* Overlay */}
