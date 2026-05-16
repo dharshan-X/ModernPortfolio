@@ -76,12 +76,12 @@ export default function Navbar() {
     <nav className="fixed bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-[5000] flex justify-center w-full pointer-events-none px-4">
       <div 
         ref={navContainerRef}
-        className='glass rounded-full p-1.5 flex items-center gap-1 border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] relative overflow-visible pointer-events-auto translate-y-6'
+        className='glass rounded-full p-1.5 flex items-center gap-1 border-black/10 shadow-[0_20px_50px_rgba(0,0,0,0.1)] relative overflow-visible pointer-events-auto translate-y-6'
       >
         {/* Animated Active Background */}
         <div 
           ref={activePillRef}
-          className="absolute left-0 top-1.5 bottom-1.5 bg-primary/15 border border-primary/30 rounded-full shadow-[0_0_20px_rgba(16,185,129,0.2)] pointer-events-none z-0"
+          className="absolute left-0 top-1.5 bottom-1.5 bg-black/5 border border-black/10 rounded-full shadow-[0_0_20px_rgba(0,0,0,0.05)] pointer-events-none z-0"
           style={{ width: 0 }}
         />
 
@@ -96,7 +96,7 @@ export default function Navbar() {
               onMouseEnter={() => setIsHovered(link.href)}
               onMouseLeave={() => setIsHovered(null)}
               className={`relative p-2.5 md:p-3 rounded-full transition-colors duration-500 group z-10 flex items-center justify-center
-                ${isActive ? 'text-primary' : 'text-text-muted hover:text-text'}`}
+                ${isActive ? 'text-black' : 'text-text-muted hover:text-black'}`}
             >
               <link.icon 
                 size={18} 
@@ -104,13 +104,13 @@ export default function Navbar() {
               />
               
               {/* Tooltip */}
-              <div className={`absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-xl bg-surface-light border border-white/10 text-[10px] font-bold uppercase tracking-widest transition-all duration-300 pointer-events-none shadow-2xl z-[100]
+              <div className={`absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-xl bg-[#eaeaea] border border-black/10 text-[10px] font-bold uppercase tracking-widest transition-all duration-300 pointer-events-none shadow-2xl z-[100]
                 ${isHovered === link.href ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-2 scale-90'}`}>
                 {link.label}
               </div>
 
               {isActive && (
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full animate-pulse" />
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-black rounded-full animate-pulse" />
               )}
             </a>
           )

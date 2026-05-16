@@ -35,7 +35,7 @@ export default function Spotlight() {
       className="fixed top-0 left-0 w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-[9998] will-change-transform"
       style={{
         background:
-          'radial-gradient(circle, rgba(16,185,129,0.07) 0%, rgba(6,182,212,0.04) 40%, transparent 70%)',
+          'radial-gradient(circle, rgba(0, 0, 0, 0.03) 0%, rgba(0, 0, 0, 0.01) 40%, transparent 70%)',
       }}
     />
   )

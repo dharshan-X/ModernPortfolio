@@ -1,79 +1,123 @@
 import { useRef } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { ArrowDownRight, Globe, Github, Linkedin, Mail } from 'lucide-react'
-import { useLenis } from './SmoothScroll'
-import MagneticButton from './MagneticButton'
+import { ArrowDown, ArrowRight } from 'lucide-react'
 
 export default function Hero() {
   const containerRef = useRef(null)
-  const lenisRef = useLenis()
-
-  const scrollToAbout = () => {
-    if (lenisRef?.current) {
-      lenisRef.current.scrollTo('#about')
-    } else {
-      const el = document.querySelector('#about')
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.5 } })
 
-    tl.from('.hero-title span', {
-      y: 150,
-      skewY: 10,
-      stagger: 0.1,
+    tl.from('.hero-badge', {
+      y: 20,
       opacity: 0,
+      duration: 1.2,
     })
-    .from('.hero-snippet', {
-      y: 50,
+    .from('.hero-hello', {
+      y: 100,
+      opacity: 0,
+      duration: 1.5,
+    }, '-=1')
+    .from('.hero-subtext', {
+      y: 30,
       opacity: 0,
     }, '-=1.2')
-    .from('.hero-social', {
-      x: -50,
+    .from('.hero-cta', {
+      y: 30,
       opacity: 0,
-      stagger: 0.1,
+    }, '-=1.3')
+    .from('.hero-stat-item', {
+      y: 40,
+      opacity: 0,
+      stagger: 0.15,
+    }, '-=1.4')
+    .from('.hero-scroll', {
+      opacity: 0,
     }, '-=1')
+    .from('.hero-right-visual', {
+      scale: 1.05,
+      opacity: 0,
+      duration: 2,
+    }, '-=2')
+
+    // Cinematic Scroll Animation - Smooth Parallax without pinning
+    gsap.to('.hero-right-visual img', {
+      scale: 3,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top top',
+        end: '+=125%', // Animate over the span of one viewport height
+        scrub: 0.5, // Reduced smoothing so it's more responsive to scroll
+      }
+    })
   }, { scope: containerRef })
 
   return (
-    <section id="hero" ref={containerRef} className="relative min-h-screen flex items-center bg-bg overflow-hidden pt-20">
-      {/* Background Decorative Glows */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[160px] -translate-y-1/4 translate-x-1/4 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[140px] translate-y-1/4 -translate-x-1/4 pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
-          <h1 className="hero-title text-[40px] sm:text-[50px] md:text-[70px] lg:text-[90px] leading-[0.9] font-display font-bold mb-8 overflow-hidden flex flex-wrap justify-center gap-x-4 md:gap-x-6">
-            <span className="inline-block">CRAFTING</span>
-            <span className="inline-block gradient-text">FUTURE</span>
-            <span className="inline-block">INTERFACES</span>
+    <section id="hero" ref={containerRef} className="relative min-h-screen grid lg:grid-cols-2 overflow-hidden">
+      
+      {/* Hero Left - Coordinates and Spacing based on JSON */}
+      <div className="bg-[#eaeaea] px-6 md:px-24 flex flex-col justify-start pt-[60px] relative">
+                {/* Heading: Hello at y:259 */}
+        <div className="relative mb-20">
+          <h1 className="hero-hello text-[110px] md:text-[130px] font-sans font-medium leading-none tracking-tighter text-text">
+            Hello,
           </h1>
-
-          <p className="text-text-muted text-base md:text-xl max-w-xl mb-10 hero-snippet leading-relaxed px-2 sm:px-0">
-            I am <span className="text-text font-medium">Dharshan Balaji</span>, a Software Engineer from Salem. 
-            Currently fighting the borrow checker and building high-performance systems.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 hero-snippet">
-            <MagneticButton strength={0.5} className="inline-block">
-              <button
-                onClick={scrollToAbout}
-                className='w-[50px] h-[51px] rounded-full bg-primary text-black flex items-center justify-center hover:scale-110 transition-transform active:scale-95 shadow-[0_0_20px_rgba(16,185,129,0.3)] cursor-pointer'
-              >
-                 <ArrowDownRight size={20} strokeWidth={2.5} />
-              </button>
-            </MagneticButton>
+          
+          <div className="hero-subtext mt-8 max-w-lg">
+            <p className="text-xl md:text-2xl font-medium tracking-tight text-text-muted leading-relaxed">
+              Hi, I'm <span className="text-text italic font-semibold">Dharshan</span>. 
+              An aspiring <span className="text-text italic font-semibold">Software Engineer</span> dedicated to building elegant, scalable, and user-centric digital experiences.
+            </p>
           </div>
 
-          <div className='flex items-center justify-center gap-8 mt-12 mb-8 translate-y-12'>
-            <a href="https://github.com/dharsahan" target="_blank" rel="noreferrer" className="hero-social text-text-muted hover:text-primary transition-colors"><Github size={20} /></a>
-            <a href="#" className="hero-social text-text-muted hover:text-primary transition-colors"><Linkedin size={20} /></a>
-            <a href="#" className="hero-social text-text-muted hover:text-primary transition-colors"><Mail size={20} /></a>
+          <div className="hero-cta mt-10 flex flex-wrap items-center gap-6">
+            <a href="#work" className="group relative px-6 py-3 font-medium text-text overflow-hidden rounded-full border border-black/20 hover:border-black transition-colors flex items-center gap-2 bg-transparent hover:bg-black hover:text-white duration-300">
+              View My Work <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a href="#contact" className="text-sm font-semibold uppercase tracking-widest text-text-muted hover:text-text transition-colors relative after:absolute after:-bottom-1 after:left-0 after:h-[1px] after:w-full after:origin-bottom-right after:scale-x-0 after:bg-text after:transition-transform after:duration-300 hover:after:origin-bottom-left hover:after:scale-x-100">
+              Get in touch
+            </a>
           </div>
         </div>
+        
+
+        <div className="flex gap-16 md:gap-24 mb-20 lg:mb-32">
+          <div className="hero-stat-item">
+            <p className="text-4xl md:text-5xl font-sans font-bold tracking-tighter text-text">500<span className="text-text-muted">+</span></p>
+            <p className="text-[11px] md:text-[12px] text-text-muted uppercase tracking-wider font-semibold mt-2 opacity-80">Contributions</p>
+          </div>
+          <div className="hero-stat-item">
+            <p className="text-4xl md:text-5xl font-sans font-bold tracking-tighter text-text">50<span className="text-text-muted">+</span></p>
+            <p className="text-[11px] md:text-[12px] text-text-muted uppercase tracking-wider font-semibold mt-2 opacity-80">Repositories</p>
+          </div>
+        </div>
+
+        {/* Scroll CTA */}
+        <div className="hero-scroll absolute bottom-8 left-6 md:left-24 flex items-center gap-4 text-[11px] font-bold uppercase tracking-[0.4em] text-text-muted opacity-60">
+           Scroll down <ArrowDown size={16} className="animate-bounce" />
+        </div>
       </div>
+
+      {/* Hero Right - Unified light bg with the left side */}
+      <div className="hero-right-visual bg-[#eaeaea] relative flex items-center justify-center min-h-[50vh] lg:min-h-screen">
+         <div className="w-full h-full flex items-center justify-center relative">
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/10 to-transparent z-10 mix-blend-overlay"></div>
+            <img 
+                src="/hero-portrait.png" 
+                alt="Dharshan Portrait"
+                className="w-full h-full object-cover object-center"
+             />
+         </div>
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap');
+        .font-sans {
+          font-family: 'Inter', sans-serif !important;
+        }
+      `}} />
     </section>
   );
 }

@@ -26,7 +26,7 @@ export default function About() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-white/5">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-black/5">
               {[
                 { label: 'Repositories', value: '50+' },
                 { label: 'Contributions', value: '500+' },

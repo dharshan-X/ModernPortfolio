@@ -17,11 +17,11 @@ export default function CustomCursor() {
     }
 
     const onEnter = () => {
-      gsap.to(ring, { scale: 1.5, borderColor: 'var(--color-primary)', backgroundColor: 'rgba(16, 185, 129, 0.1)', duration: 0.3 })
+      gsap.to(ring, { scale: 1.5, borderColor: 'var(--color-primary)', backgroundColor: 'rgba(0, 0, 0, 0.05)', duration: 0.3 })
       gsap.to(dot, { scale: 0, duration: 0.2 })
     }
     const onLeave = () => {
-      gsap.to(ring, { scale: 1, borderColor: 'rgba(255, 255, 255, 0.2)', backgroundColor: 'transparent', duration: 0.3 })
+      gsap.to(ring, { scale: 1, borderColor: 'rgba(0, 0, 0, 0.1)', backgroundColor: 'transparent', duration: 0.3 })
       gsap.to(dot, { scale: 1, duration: 0.2 })
     }
 
@@ -54,7 +54,7 @@ export default function CustomCursor() {
       />
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 w-8 h-8 border border-white/20 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-[border-color,background-color] duration-300"
+        className="fixed top-0 left-0 w-8 h-8 border border-black/10 rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 transition-[border-color,background-color] duration-300"
       />
     </>
   )

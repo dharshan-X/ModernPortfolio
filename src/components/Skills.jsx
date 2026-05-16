@@ -13,35 +13,35 @@ const skillGroups = [
     icon: Box,
     skills: ['Microservices', 'System Design', 'Domain Driven Design'],
     span: 'md:col-span-2 md:row-span-1',
-    color: '#10b981'
+    color: '#ffffff'
   },
   {
     category: 'Core Engine',
     icon: Code2,
     skills: ['React 19', 'TypeScript', 'Rust (Wasm)', 'Node.js'],
     span: 'md:col-span-1 md:row-span-2',
-    color: '#06b6d4'
+    color: '#d4d4d8'
   },
   {
     category: 'Interface',
     icon: Layout,
     skills: ['GSAP', 'R3F / Three.js', 'Tailwind v4', 'Framer Motion'],
     span: 'md:col-span-1 md:row-span-1',
-    color: '#6366f1'
+    color: '#a1a1aa'
   },
   {
     category: 'Data Layer',
     icon: Database,
     skills: ['PostgreSQL', 'Redis', 'GraphQL', 'Prisma'],
     span: 'md:col-span-1 md:row-span-1',
-    color: '#8b5cf6'
+    color: '#71717a'
   },
   {
     category: 'Platform',
     icon: Smartphone,
     skills: ['AWS', 'Docker', 'Vercel Edge', 'CI/CD Pipelines'],
     span: 'md:col-span-2 md:row-span-1',
-    color: '#f59e0b'
+    color: '#ffffff'
   }
 ]
 
@@ -71,7 +71,7 @@ export default function Skills() {
   return (
     <section id="skills" ref={sectionRef} className="section-padding bg-bg relative">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-end justify-between mb-24 border-b border-white/5 pb-12">
+        <div className="flex items-end justify-between mb-24 border-b border-black/5 pb-12">
             <div>
                 <p className="text-primary font-bold tracking-[0.4em] uppercase text-[10px] mb-4">Competencies</p>
                 <TextReveal as="h2" className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none">TECH STACK</TextReveal>
@@ -85,10 +85,10 @@ export default function Skills() {
           {skillGroups.map((group, i) => (
             <div 
                 key={group.category} 
-                className={`bento-item glass p-8 rounded-[2.5rem] group relative overflow-hidden transition-all duration-500 hover:border-white/20 hover:bg-white/[0.07] ${group.span}`}
+                className={`bento-item glass p-8 rounded-[2.5rem] group relative overflow-hidden transition-all duration-500 hover:border-black/10 hover:bg-black/[0.02] ${group.span}`}
             >
               <div 
-                className="absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none"
+                className="absolute top-0 right-0 w-32 h-32 blur-[60px] opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none"
                 style={{ backgroundColor: group.color }}
               />
 
@@ -96,7 +96,7 @@ export default function Skills() {
                 <div>
                   <div className="flex items-center justify-between mb-6">
                     <div 
-                        className="p-3 rounded-2xl bg-white/5 border border-white/10 text-text transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
+                        className="p-3 rounded-2xl bg-black/5 border border-black/5 text-text transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6"
                         style={{ color: group.color }}
                     >
                         <group.icon size={24} />
@@ -108,7 +108,7 @@ export default function Skills() {
                 
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map(skill => (
-                    <span key={skill} className="text-[11px] font-medium px-3 py-1 bg-white/5 rounded-lg border border-white/5 text-text-muted group-hover:text-text group-hover:border-white/10 transition-colors">
+                    <span key={skill} className="text-[11px] font-medium px-3 py-1 bg-black/5 rounded-lg border border-black/5 text-text-muted group-hover:text-text group-hover:border-black/10 transition-colors">
                         {skill}
                     </span>
                   ))}

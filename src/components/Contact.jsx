@@ -21,7 +21,7 @@ export default function Contact() {
           <MagneticButton strength={0.3} className="inline-block">
             <a
               href="mailto:dharsahanbalaji@gmail.com"
-              className="inline-flex items-center gap-4 md:gap-6 px-8 md:px-12 py-4 md:py-6 rounded-full bg-primary text-black text-xl md:text-2xl font-display font-bold hover:scale-105 transition-transform group"
+              className="inline-flex items-center gap-4 md:gap-6 px-8 md:px-12 py-4 md:py-6 rounded-full bg-primary text-white text-xl md:text-2xl font-display font-bold hover:scale-105 transition-transform group"
             >
               SAY HELLO
               <ArrowRight size={28} className="md:w-8 md:h-8 group-hover:translate-x-2 transition-transform" />
@@ -29,7 +29,7 @@ export default function Contact() {
           </MagneticButton>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 pt-16 md:pt-24 border-t border-white/5">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 pt-16 md:pt-24 border-t border-black/5">
           <div className="flex gap-8">
             <a href="https://github.com/dharsahan" target="_blank" rel="noreferrer" className="text-text-muted hover:text-primary transition-all duration-300 hover:-translate-y-1"><Github size={24} /></a>
             <a href="#" className="text-text-muted hover:text-primary transition-all duration-300 hover:-translate-y-1"><Linkedin size={24} /></a>

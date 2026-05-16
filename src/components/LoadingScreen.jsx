@@ -50,8 +50,8 @@ export default function LoadingScreen({ onComplete }) {
       className="fixed inset-0 z-[10001] bg-bg flex flex-col items-center justify-center overflow-hidden"
     >
       <div ref={textRef} className="relative">
-        <div className="flex items-baseline gap-2 mb-4">
-          <span ref={counterRef} className="text-[120px] md:text-[180px] font-display font-bold leading-none tabular-nums">0</span>
+        <div className="flex items-baseline gap-2 mb-4 justify-center">
+          <span ref={counterRef} className="text-[120px] md:text-[180px] font-display font-bold leading-none tabular-nums text-primary">0</span>
           <span className="text-primary text-4xl font-display font-bold">%</span>
         </div>
         <p className="text-text-muted text-sm tracking-[0.4em] uppercase text-center font-medium">
@@ -60,7 +60,7 @@ export default function LoadingScreen({ onComplete }) {
       </div>
       
       <div className="absolute bottom-20 left-10 right-10 flex flex-col gap-4">
-         <div className="h-[1px] w-full bg-white/5 overflow-hidden">
+         <div className="h-[1px] w-full bg-black/5 overflow-hidden">
             <div
               ref={progressRef}
               className="h-full bg-primary origin-left w-full"

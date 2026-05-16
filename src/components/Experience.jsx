@@ -89,7 +89,7 @@ export default function Experience() {
           {experiences.map((exp, i) => (
             <div key={exp.company} className="milestone-card relative grid lg:grid-cols-12 gap-12 items-center">
               {/* Giant Year background */}
-              <div className="milestone-num absolute left-0 sm:-left-10 lg:left-0 top-1/2 -translate-y-1/2 text-[80px] sm:text-[120px] md:text-[240px] font-display font-bold text-white/5 select-none z-0">
+              <div className="milestone-num absolute left-0 sm:-left-10 lg:left-0 top-1/2 -translate-y-1/2 text-[80px] sm:text-[120px] md:text-[240px] font-display font-bold text-black/5 select-none z-0">
                 {exp.year}
               </div>
 
@@ -112,7 +112,7 @@ export default function Experience() {
 
                   <div className="flex flex-wrap gap-3 pt-4">
                     {exp.tags.map(tag => (
-                        <span key={tag} className="text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-2 bg-white/5 border border-white/10 rounded-full text-text-muted">
+                        <span key={tag} className="text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-2 bg-black/5 border border-black/10 rounded-full text-text-muted">
                             {tag}
                         </span>
                     ))}
@@ -123,17 +123,17 @@ export default function Experience() {
               {/* Decorative visual element */}
               <div className={`hidden lg:block lg:col-span-5 ${i % 2 === 0 ? 'lg:col-start-8 order-2' : 'lg:order-1'}`}>
                 <div className="relative group">
-                    <div className="aspect-[4/5] bg-surface-light rounded-[3rem] border border-white/5 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-accent/20 opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
+                    <div className="aspect-[4/5] bg-surface-light rounded-[3rem] border border-black/5 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-br from-black/5 via-transparent to-black/5 opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
                         {/* Placeholder for dynamic art/mesh */}
                         <div className="w-full h-full flex items-center justify-center p-12">
-                            <div className="w-full h-full border border-white/5 rounded-2xl flex items-center justify-center">
-                                <span className="text-[100px] grayscale opacity-20">0{i+1}</span>
+                            <div className="w-full h-full border border-black/5 rounded-2xl flex items-center justify-center">
+                                <span className="text-[100px] grayscale opacity-10">0{i+1}</span>
                             </div>
                         </div>
                     </div>
                     {/* Floating accent */}
-                    <div className="absolute -bottom-6 -right-6 w-32 h-32 glass rounded-3xl -z-10 blur-2xl bg-primary/20 animate-pulse" />
+                    <div className="absolute -bottom-6 -right-6 w-32 h-32 glass rounded-3xl -z-10 blur-2xl bg-black/5 animate-pulse" />
                 </div>
               </div>
             </div>
