@@ -89,7 +89,7 @@ export default function Experience() {
           {experiences.map((exp, i) => (
             <div key={exp.company} className="milestone-card relative grid lg:grid-cols-12 gap-12 items-center">
               {/* Giant Year background */}
-              <div className="milestone-num absolute left-0 sm:-left-10 lg:left-0 top-1/2 -translate-y-1/2 text-[80px] sm:text-[120px] md:text-[240px] font-display font-bold text-black/5 select-none z-0">
+              <div className="milestone-num absolute left-0 sm:-left-10 lg:-left-20 top-1/2 -translate-y-1/2 text-[80px] sm:text-[120px] md:text-[200px] font-display font-bold text-black/5 select-none z-0">
                 {exp.year}
               </div>
 
