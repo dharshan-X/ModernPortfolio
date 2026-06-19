@@ -61,6 +61,9 @@ export default function Hero() {
       <div className="bg-[#eaeaea] px-6 md:px-24 flex flex-col justify-start pt-[60px] relative">
                 {/* Heading: Hello at y:259 */}
         <div className="relative mb-20">
+          <div className="hero-badge inline-block px-4 py-1.5 mb-6 rounded-full border border-black/10 text-xs font-bold uppercase tracking-widest text-text-muted bg-black/5">
+            Available for work
+          </div>
           <h1 className="hero-hello text-[110px] md:text-[130px] font-sans font-medium leading-none tracking-tighter text-text">
             Hello,
           </h1>
