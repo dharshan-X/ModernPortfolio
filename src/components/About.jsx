@@ -1,6 +1,45 @@
+import { useRef } from 'react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+
 export default function About() {
+  const containerRef = useRef(null)
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 80%',
+      }
+    })
+
+    tl.from('.about-title-reveal', {
+      x: -50,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out'
+    })
+    .from('.about-content-reveal p', {
+      y: 30,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }, '-=0.5')
+    .from('.about-stat', {
+      y: 20,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: 'power3.out'
+    }, '-=0.3')
+  }, { scope: containerRef })
+
   return (
-    <section id="about" className="section-padding bg-bg relative overflow-hidden">
+    <section id="about" ref={containerRef} className="section-padding bg-bg relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-12 gap-12 md:gap-16 items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-32 relative about-title-reveal z-10">
@@ -33,7 +72,7 @@ export default function About() {
                 { label: 'Active Projects', value: '12+' },
                 { label: 'Experience', value: '3Y+' },
               ].map((stat) => (
-                <div key={stat.label}>
+                <div key={stat.label} className="about-stat">
                   <p className="text-3xl font-display font-bold text-primary mb-1">{stat.value}</p>
                   <p className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-bold">{stat.label}</p>
                 </div>

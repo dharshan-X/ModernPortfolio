@@ -1,11 +1,46 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Mail, Github, MessageSquare, Linkedin, ArrowRight, MousePointerClick } from 'lucide-react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import TextReveal from './TextReveal'
 import MagneticButton from './MagneticButton'
 import MiniBrowser from './MiniBrowser'
 
+gsap.registerPlugin(ScrollTrigger)
+
 export default function Contact() {
   const [activePlatform, setActivePlatform] = useState(null);
+  const containerRef = useRef(null)
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top 80%',
+      }
+    })
+
+    tl.from('.contact-text-reveal', {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out'
+    })
+    .from('.contact-btn-reveal', {
+      scale: 0.9,
+      opacity: 0,
+      duration: 0.8,
+      ease: 'back.out(1.7)'
+    }, '-=0.6')
+    .from('.contact-footer-reveal', {
+      y: 20,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }, '-=0.4')
+  }, { scope: containerRef })
 
   const handleSocialClick = (e, platform) => {
     e.preventDefault();
@@ -13,7 +48,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-padding bg-bg relative overflow-hidden">
+    <section id="contact" ref={containerRef} className="section-padding bg-bg relative overflow-hidden">
       {/* Background Decorative Element */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
@@ -27,12 +62,12 @@ export default function Contact() {
           
           {/* Text & CTA */}
           <div className="flex flex-col justify-center text-center max-w-2xl mx-auto mb-16">
-            <p className="text-text-muted text-xl md:text-[22px] leading-relaxed mb-10">
+            <p className="contact-text-reveal text-text-muted text-xl md:text-[22px] leading-relaxed mb-10">
               Currently accepting new projects and collaborations. If you have an ambitious idea in 
               AI or Cloud-native engineering, I'd love to help you bring it to life.
             </p>
 
-            <MagneticButton strength={0.3} className="inline-block mx-auto">
+            <MagneticButton strength={0.3} className="contact-btn-reveal inline-block mx-auto">
               <a
                 href="mailto:dharshanbalaji83@gmail.com"
                 className="inline-flex items-center gap-4 md:gap-6 px-8 md:px-12 py-4 md:py-5 rounded-full bg-primary text-white text-xl font-display font-bold hover:scale-105 transition-transform group"
@@ -46,7 +81,7 @@ export default function Contact() {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 md:pt-12 border-t border-black/5 gap-8">
+        <div className="contact-footer-reveal flex flex-col md:flex-row items-center justify-between pt-8 md:pt-12 border-t border-black/5 gap-8">
           
           {/* Social Icons & Popup */}
           <div className="flex flex-col items-center md:items-start relative">
