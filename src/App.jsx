@@ -25,6 +25,9 @@ function App() {
   useGSAP(() => {
     if (loading) return
     
+    // Recalculate ScrollTrigger positions once content is rendered and visible
+    ScrollTrigger.refresh()
+    
     // Select all sections except hero
     const sections = gsap.utils.toArray('section:not(#hero)')
     

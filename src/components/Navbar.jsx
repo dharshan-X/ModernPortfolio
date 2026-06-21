@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react'
 import { Home, User, Briefcase, Code, FolderOpen, Mail } from 'lucide-react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
+import { useLenis } from './SmoothScroll'
 
 const navLinks = [
   { label: 'Home', href: '#hero', icon: Home },
@@ -18,6 +19,7 @@ export default function Navbar() {
   const navContainerRef = useRef(null)
   const activePillRef = useRef(null)
   const linkRefs = useRef([])
+  const lenisRef = useLenis()
 
   useEffect(() => {
     linkRefs.current = linkRefs.current.slice(0, navLinks.length)
@@ -62,13 +64,21 @@ export default function Navbar() {
 
   const scrollTo = (e, href) => {
     e.preventDefault()
-    const el = document.querySelector(href)
-    if (el) {
-      window.scrollTo({
-        top: el.offsetTop,
-        left: 0,
-        behavior: 'smooth'
+    if (lenisRef && lenisRef.current) {
+      lenisRef.current.scrollTo(href, {
+        offset: 0,
+        duration: 1.2
       })
+    } else {
+      const el = document.querySelector(href)
+      if (el) {
+        const offset = el.getBoundingClientRect().top + window.scrollY
+        window.scrollTo({
+          top: offset,
+          left: 0,
+          behavior: 'smooth'
+        })
+      }
     }
   }
 

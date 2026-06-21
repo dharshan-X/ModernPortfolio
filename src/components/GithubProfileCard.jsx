@@ -44,8 +44,8 @@ export default function GithubProfileCard({ username }) {
   const data = error ? {
     avatar_url: "/hero-portrait.png",
     name: "Dharshan Balaji",
-    login: "dharsahan",
-    html_url: "https://github.com/dharsahan",
+    login: "dharshan-X",
+    html_url: "https://github.com/dharshan-X",
     bio: "Aspiring to be a Software Engineer. Passionate about building elegant digital experiences.",
     public_repos: 52,
     followers: 128,

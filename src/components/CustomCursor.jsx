@@ -16,29 +16,23 @@ export default function CustomCursor() {
       gsap.to(ring, { x: clientX, y: clientY, duration: 0.4, ease: 'power3.out' })
     }
 
-    const onEnter = () => {
-      gsap.to(ring, { scale: 1.5, borderColor: 'var(--color-primary)', backgroundColor: 'rgba(0, 0, 0, 0.05)', duration: 0.3 })
-      gsap.to(dot, { scale: 0, duration: 0.2 })
-    }
-    const onLeave = () => {
-      gsap.to(ring, { scale: 1, borderColor: 'rgba(0, 0, 0, 0.1)', backgroundColor: 'transparent', duration: 0.3 })
-      gsap.to(dot, { scale: 1, duration: 0.2 })
+    const onMouseOver = (e) => {
+      const target = e.target.closest('a, button, [role="button"], input, textarea, [data-cursor="pointer"]')
+      if (target) {
+        gsap.to(ring, { scale: 1.5, borderColor: 'var(--color-primary)', backgroundColor: 'rgba(0, 0, 0, 0.05)', duration: 0.3 })
+        gsap.to(dot, { scale: 0, duration: 0.2 })
+      } else {
+        gsap.to(ring, { scale: 1, borderColor: 'rgba(0, 0, 0, 0.1)', backgroundColor: 'transparent', duration: 0.3 })
+        gsap.to(dot, { scale: 1, duration: 0.2 })
+      }
     }
 
     window.addEventListener('mousemove', onMove)
-
-    const interactives = document.querySelectorAll('a, button, [role="button"], input, textarea')
-    interactives.forEach((el) => {
-      el.addEventListener('mouseenter', onEnter)
-      el.addEventListener('mouseleave', onLeave)
-    })
+    window.addEventListener('mouseover', onMouseOver)
 
     return () => {
       window.removeEventListener('mousemove', onMove)
-      interactives.forEach((el) => {
-        el.removeEventListener('mouseenter', onEnter)
-        el.removeEventListener('mouseleave', onLeave)
-      })
+      window.removeEventListener('mouseover', onMouseOver)
     }
   }, [])
 

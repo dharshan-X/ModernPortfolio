@@ -1,3 +1,5 @@
+import GithubProfileCard from './GithubProfileCard'
+
 export default function About() {
   return (
     <section id="about" className="section-padding bg-bg relative overflow-hidden">
@@ -12,32 +14,40 @@ export default function About() {
           </div>
 
           <div className="lg:col-span-8 space-y-12 about-content-reveal">
-            <div className="space-y-8 text-lg sm:text-xl md:text-2xl text-text-muted leading-relaxed font-medium">
-              <p>
-                Based in <span className="text-text">Salem, Tamil Nadu</span>, I am a Software Engineer
-                passionate about building systems that scale and interfaces that inspire. 
-              </p>
-              <p>
-                My philosophy is simple: <span className="text-text">"Why use garbage collection when you can manually manage memory and cry?"</span>.
-                I thrive on the challenge of low-level optimization and the elegance of high-level design.
-              </p>
-              <p className="text-lg md:text-xl font-normal opacity-80 italic">
-                "Brew coffee, write code, introduce bugs, google the error, fix bugs, repeat."
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-black/5">
-              {[
-                { label: 'Repositories', value: '50+' },
-                { label: 'Contributions', value: '500+' },
-                { label: 'Active Projects', value: '12+' },
-                { label: 'Experience', value: '3Y+' },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <p className="text-3xl font-display font-bold text-primary mb-1">{stat.value}</p>
-                  <p className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-bold">{stat.label}</p>
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              <div className="space-y-8">
+                <div className="space-y-6 text-lg sm:text-xl text-text-muted leading-relaxed font-medium">
+                  <p>
+                    Based in <span className="text-text">Salem, Tamil Nadu</span>, I am a Software Engineer
+                    passionate about building systems that scale and interfaces that inspire. 
+                  </p>
+                  <p>
+                    My philosophy is simple: <span className="text-text">"Why use garbage collection when you can manually manage memory and cry?"</span>.
+                    I thrive on low-level optimization and high-level design.
+                  </p>
+                  <p className="text-base font-normal opacity-85 italic border-l-2 border-black/20 pl-4 py-1">
+                    "Brew coffee, write code, introduce bugs, google the error, fix bugs, repeat."
+                  </p>
                 </div>
-              ))}
+
+                <div className="grid grid-cols-2 gap-6 pt-8 border-t border-black/5">
+                  {[
+                    { label: 'Repositories', value: '50+' },
+                    { label: 'Contributions', value: '500+' },
+                    { label: 'Active Projects', value: '12+' },
+                    { label: 'Experience', value: '3Y+' },
+                  ].map((stat) => (
+                    <div key={stat.label}>
+                      <p className="text-3xl font-display font-bold text-primary mb-1">{stat.value}</p>
+                      <p className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-bold">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="w-full">
+                <GithubProfileCard username="dharshan-X" />
+              </div>
             </div>
           </div>
         </div>
