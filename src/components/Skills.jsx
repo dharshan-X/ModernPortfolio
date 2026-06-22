@@ -3,7 +3,6 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Box, Code2, Database, Layout, Smartphone } from 'lucide-react'
-import TextReveal from './TextReveal'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -46,24 +45,23 @@ function SkillActiveVisual({ index }) {
   if (index === 0) {
     // Architecture microservices topology diagram
     return (
-      <div className="w-full h-full bg-white/50 rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
+      <div className="w-full h-full bg-white/40 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
         <div className="flex justify-between items-center border-b border-black/10 pb-2 mb-2 shrink-0">
-          <span className="font-bold">TOPOLOGY: MICROSERVICES</span>
+          <span className="font-bold tracking-wider">TOPOLOGY: DISTRIBUTED</span>
           <span className="text-black text-[8px] flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-            DISTRIBUTED
+            STABLE
           </span>
         </div>
         
         <div className="flex-1 relative flex items-center justify-center">
           <svg className="w-full h-full absolute inset-0" viewBox="0 0 200 120">
-            {/* Grid overlay for blueprint feel */}
             <defs>
-              <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <pattern id="grid-topology" width="10" height="10" patternUnits="userSpaceOnUse">
                 <path d="M 10 0 L 0 0 0 10" fill="none" stroke="black" strokeWidth="0.5" opacity="0.03" />
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
+            <rect width="100%" height="100%" fill="url(#grid-topology)" />
 
             <path d="M 30 60 L 90 30" stroke="black" strokeWidth="1" strokeDasharray="3 3" opacity="0.3" />
             <path d="M 30 60 L 90 60" stroke="black" strokeWidth="1" strokeDasharray="3 3" opacity="0.3" />
@@ -97,14 +95,13 @@ function SkillActiveVisual({ index }) {
         
         <div className="border-t border-black/10 pt-2 flex justify-between items-center opacity-70 text-[8px] shrink-0">
           <span>GATEWAY_LOAD: 2.1k req/s</span>
-          <span>REPLICAS: 3</span>
+          <span>REPLICAS: 3 ACTIVE</span>
         </div>
       </div>
     )
   }
 
   if (index === 1) {
-    // Core Engine compiler mockup (monochrome code editor)
     const fileTabs = [
       { id: 'rs', name: 'optimizer.rs' },
       { id: 'py', name: 'predict.py' },
@@ -113,25 +110,23 @@ function SkillActiveVisual({ index }) {
     ]
 
     return (
-      <div className="w-full h-full bg-white/50 rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black/85 select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
-        
-        {/* Editor Tab Bar */}
+      <div className="w-full h-full bg-white/40 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black/85 select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
         <div className="flex justify-between items-center border-b border-black/10 pb-2 mb-2 shrink-0">
-          <div className="flex gap-1.5 items-center">
-            <div className="w-2 h-2 rounded-full bg-black/10" />
-            <div className="w-2 h-2 rounded-full bg-black/20" />
-            <div className="w-2 h-2 rounded-full bg-black/40" />
+          <div className="flex gap-1 items-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-black/15" />
+            <div className="w-1.5 h-1.5 rounded-full bg-black/30" />
+            <div className="w-1.5 h-1.5 rounded-full bg-black/50" />
           </div>
           
-          <div className="flex gap-1.5 ml-4">
+          <div className="flex gap-1 ml-4">
             {fileTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={(e) => {
-                  e.stopPropagation() // Prevent tab change on parent
+                  e.stopPropagation()
                   setActiveLang(tab.id)
                 }}
-                className={`px-2 py-0.5 rounded-[4px] text-[7.5px] border transition-all duration-200 cursor-pointer font-bold ${
+                className={`px-1.5 py-0.5 rounded-[4px] text-[7.5px] border transition-all duration-200 cursor-pointer font-bold ${
                   activeLang === tab.id
                     ? 'bg-black text-white border-black shadow-sm'
                     : 'bg-transparent text-black/40 border-transparent hover:text-black/70 hover:bg-black/5'
@@ -143,14 +138,13 @@ function SkillActiveVisual({ index }) {
           </div>
         </div>
         
-        {/* Code Content */}
         <div className="flex-1 text-left space-y-1 overflow-hidden py-1 text-[8px] xl:text-[8.5px] leading-relaxed">
           {activeLang === 'rs' && (
             <>
               <div><span className="text-black font-extrabold">use</span> wasm_bindgen::prelude::*;</div>
               <div className="text-black/40 italic">// optimize data threads using SIMD</div>
-              <div><span className="text-accent underline decoration-dotted decoration-black/25">#[wasm_bindgen]</span></div>
-              <div><span className="text-black font-extrabold">pub fn</span> <span className="text-black font-semibold">process_buffer</span>(buf: &amp;[<span className="text-accent">u8</span>]) -&gt; <span className="text-accent">Vec</span>&lt;<span className="text-accent">u8</span>&gt; &#123;</div>
+              <div><span className="text-black/70 underline decoration-dotted decoration-black/25">#[wasm_bindgen]</span></div>
+              <div><span className="text-black font-extrabold">pub fn</span> <span className="text-black font-semibold">process_buffer</span>(buf: &amp;[<span className="text-black/80">u8</span>]) -&gt; <span className="text-black/80">Vec</span>&lt;<span className="text-black/80">u8</span>&gt; &#123;</div>
               <div className="pl-3 text-black/85">buf.iter().map(|&amp;x| x.wrapping_mul(<span className="font-bold">13</span>)).collect()</div>
               <div>&#125;</div>
             </>
@@ -197,8 +191,8 @@ function SkillActiveVisual({ index }) {
         </div>
 
         <div className="border-t border-black/10 pt-2 flex justify-between items-center opacity-70 text-[8px] shrink-0">
-          <span>COMPILER: rustc / gcc / javac</span>
-          <span className="text-black font-bold uppercase tracking-wider">COMPILING STABLE</span>
+          <span>COMPILER: RUSTC / GCC</span>
+          <span className="text-black font-bold uppercase tracking-wider">COMPILED SUCCESSFUL</span>
         </div>
 
         <style dangerouslySetInnerHTML={{ __html: `
@@ -213,18 +207,17 @@ function SkillActiveVisual({ index }) {
   if (index === 2) {
     // Interface physics spring simulator
     return (
-      <div className="w-full h-full bg-white/50 rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
+      <div className="w-full h-full bg-white/40 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
         <div className="flex justify-between items-center border-b border-black/10 pb-2 mb-2 shrink-0">
-          <span className="font-bold">MOTION: SPRING_DYNAMICS</span>
+          <span className="font-bold tracking-wider">MOTION: SPRING_DYNAMICS</span>
           <span className="text-black text-[8px] flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-            INTERACTIVE
+            GPU-ACCELERATED
           </span>
         </div>
 
         <div className="flex-1 relative flex items-center justify-center">
           <svg className="w-full h-full absolute inset-0" viewBox="0 0 200 120">
-            {/* Grid overlay for blueprint feel */}
             <defs>
               <pattern id="grid-spring" width="10" height="10" patternUnits="userSpaceOnUse">
                 <path d="M 10 0 L 0 0 0 10" fill="none" stroke="black" strokeWidth="0.5" opacity="0.03" />
@@ -248,8 +241,8 @@ function SkillActiveVisual({ index }) {
         </div>
 
         <div className="border-t border-black/10 pt-2 flex justify-between items-center opacity-70 text-[8px] shrink-0">
-          <span>FPS: 60 / GPU_BOUND</span>
-          <span>GSAP_SPRING</span>
+          <span>TARGET_FPS: 60 / WebGL</span>
+          <span>GSAP_EASE_SPLINE</span>
         </div>
       </div>
     )
@@ -258,42 +251,42 @@ function SkillActiveVisual({ index }) {
   if (index === 3) {
     // Data Layer relational connection schema
     return (
-      <div className="w-full h-full bg-white/50 rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
+      <div className="w-full h-full bg-white/40 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
         <div className="flex justify-between items-center border-b border-black/10 pb-2 mb-2 shrink-0">
-          <span className="font-bold">QUERY: DATA_GRAPH_SCHEMA</span>
+          <span className="font-bold tracking-wider">QUERY: DATALAYER_RESOLVER</span>
           <span className="text-black text-[8px] flex items-center gap-1">
             <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
-            POOL: ACTIVE
+            ACTIVE
           </span>
         </div>
 
         <div className="flex-1 flex items-center justify-center p-1">
           <div className="w-full grid grid-cols-3 gap-2 text-center text-[6.5px] leading-tight">
             <div className="border border-black/15 bg-white p-1.5 rounded relative flex flex-col justify-between shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-              <div className="font-bold text-[7px] text-black border-b border-black/10 pb-1 mb-1 tracking-wider">CLIENT</div>
-              <div>POST /graphql</div>
-              <div className="text-black/50">query &#123; user &#125;</div>
+              <div className="font-bold text-[7px] text-black border-b border-black/10 pb-1 mb-1 tracking-wider">GraphQL</div>
+              <div>POST /query</div>
+              <div className="text-black/50">schema &#123; node &#125;</div>
               <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-black animate-ping" />
             </div>
             
             <div className="border border-black/15 bg-white p-1.5 rounded flex flex-col justify-between shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-              <div className="font-bold text-[7px] text-black border-b border-black/10 pb-1 mb-1 tracking-wider">RESOLVER</div>
-              <div>FindMany()</div>
-              <div className="text-black/50">Prisma Client</div>
-              <div className="bg-black text-white px-1 py-0.5 rounded-[3px] text-[5px] font-bold uppercase tracking-widest mt-1 mx-auto shrink-0 self-center">CACHE HIT</div>
+              <div className="font-bold text-[7px] text-black border-b border-black/10 pb-1 mb-1 tracking-wider">ORMCache</div>
+              <div>findMany()</div>
+              <div className="text-black/50">Redis Pipeline</div>
+              <div className="bg-black text-white px-1 py-0.5 rounded-[3px] text-[5px] font-bold uppercase tracking-widest mt-1 mx-auto shrink-0 self-center">CACHE_HIT</div>
             </div>
 
             <div className="border border-black/15 bg-white p-1.5 rounded flex flex-col justify-between shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
-              <div className="font-bold text-[7px] text-black border-b border-black/10 pb-1 mb-1 tracking-wider">POSTGRES</div>
-              <div>SELECT *</div>
-              <div className="text-black/50">Indexed (PK)</div>
-              <div className="text-black/50 font-bold">t: 0.4ms</div>
+              <div className="font-bold text-[7px] text-black border-b border-black/10 pb-1 mb-1 tracking-wider">Postgres</div>
+              <div>SELECT idx</div>
+              <div className="text-black/50">Indexed GIN</div>
+              <div className="text-black/50 font-bold">t: 0.22ms</div>
             </div>
           </div>
         </div>
 
         <div className="border-t border-black/10 pt-2 flex justify-between items-center opacity-70 text-[8px] shrink-0">
-          <span>POOL_CONN: 12/50</span>
+          <span>POOL_ACTIVE: 12/50</span>
           <span>INDEX: GIN_VECTOR</span>
         </div>
       </div>
@@ -302,13 +295,13 @@ function SkillActiveVisual({ index }) {
 
   // index === 4: Platform deploy stages Actions pipeline
   return (
-    <div className="w-full h-full bg-white/50 rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
+    <div className="w-full h-full bg-white/40 backdrop-blur-md rounded-2xl p-4 flex flex-col justify-between border border-black/10 font-mono text-[9px] text-black select-none shadow-[0_10px_30px_rgba(0,0,0,0.01)] relative overflow-hidden">
       <div className="flex justify-between items-center border-b border-black/10 pb-2 mb-2 shrink-0">
-        <span className="font-bold">PIPELINE: GITHUB_ACTIONS</span>
-        <span className="text-black text-[8px] font-bold uppercase tracking-wider">● STABLE</span>
+        <span className="font-bold tracking-wider">CI_CD: GITHUB_RUNNER</span>
+        <span className="text-black text-[8px] font-bold uppercase tracking-wider">RUNNING</span>
       </div>
 
-      <div className="flex-1 flex flex-col justify-center gap-2 px-1">
+      <div className="flex-1 flex flex-col justify-center gap-1.5 px-1">
         {[
           { stage: 'LINT', status: 'SUCCESS', isRunning: false, pct: 'w-full bg-black' },
           { stage: 'BUILD', status: 'SUCCESS', isRunning: false, pct: 'w-full bg-black' },
@@ -316,16 +309,16 @@ function SkillActiveVisual({ index }) {
           { stage: 'DEPLOY', status: 'RUNNING', isRunning: true, pct: 'w-[70%] bg-black' },
         ].map((step, i) => (
           <div key={i} className="flex items-center justify-between text-[7px] border border-black/10 bg-white p-1 rounded shadow-[0_1px_3px_rgba(0,0,0,0.01)]">
-            <div className="flex items-center gap-2 w-1/4">
+            <div className="flex items-center gap-1.5 w-1/4">
               <span className="w-2.5 h-2.5 rounded-full bg-black/5 border border-black/20 flex items-center justify-center font-bold text-[5px] text-black">{i+1}</span>
               <span className="font-bold text-black">{step.stage}</span>
             </div>
             
-            <div className="flex-1 mx-3 h-1 bg-black/5 rounded-full overflow-hidden">
+            <div className="flex-1 mx-2 h-1 bg-black/5 rounded-full overflow-hidden">
               <div className={`h-full rounded-full ${step.pct} ${step.isRunning ? 'animate-pulse' : ''}`} />
             </div>
 
-            <div className={`font-bold uppercase w-[50px] text-right ${step.isRunning ? 'text-black animate-pulse' : 'text-black/60'}`}>
+            <div className={`font-bold uppercase w-[40px] text-right ${step.isRunning ? 'text-black animate-pulse' : 'text-black/60'}`}>
               {step.status}
             </div>
           </div>
@@ -333,8 +326,8 @@ function SkillActiveVisual({ index }) {
       </div>
 
       <div className="border-t border-black/10 pt-2 flex justify-between items-center opacity-70 text-[8px] shrink-0">
-        <span>NODE: VERCEL_EDGE</span>
-        <span>DEPLOYED: v14.0.2</span>
+        <span>RUNNER: EDGE_PIPELINE</span>
+        <span>DEPLOY_VER: v14.0.2</span>
       </div>
     </div>
   )
@@ -342,173 +335,253 @@ function SkillActiveVisual({ index }) {
 
 export default function Skills() {
   const sectionRef = useRef(null)
-  const [activeIndex, setActiveIndex] = useState(0)
+  const revealParagraphRef = useRef(null)
+  const accordionRef = useRef(null)
+  const [expandedIndex, setExpandedIndex] = useState(0)
 
-  const activeGroup = skillGroups[activeIndex]
+  const introText = "Architecting resilient distributed engines, crafting high-performance code pipelines, and choreography of custom hardware-accelerated user interfaces to build scalable, inspired developer ecosystems."
+  const introWords = introText.split(' ')
 
   useGSAP(() => {
-    // Initial Stagger Reveal of category tabs
-    gsap.fromTo('.skill-tab-item', 
-      { x: -30, opacity: 0 },
-      {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-        x: 0,
-        opacity: 1,
-        stagger: 0.08,
-        duration: 1,
-        ease: 'power3.out',
-      }
-    )
-    
-    // Initial reveal of showcase card
-    gsap.fromTo('.skill-showcase-card',
-      { scale: 0.98, opacity: 0 },
-      {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-        scale: 1,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power3.out',
-      }
-    )
+    // 1. Scrubbing Text Reveal
+    if (revealParagraphRef.current) {
+      const words = revealParagraphRef.current.querySelectorAll('.scrub-word')
+      gsap.fromTo(words,
+        { opacity: 0.1 },
+        {
+          opacity: 1,
+          stagger: 0.05,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: revealParagraphRef.current,
+            start: 'top 85%',
+            end: 'bottom 60%',
+            scrub: true,
+          }
+        }
+      )
+    }
+
+    // 2. Vertical slices entry stagger reveal
+    if (accordionRef.current) {
+      const slices = accordionRef.current.querySelectorAll('.accordion-slice')
+      gsap.fromTo(slices,
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 1.2,
+          ease: 'power4.out',
+          scrollTrigger: {
+            trigger: accordionRef.current,
+            start: 'top 85%',
+          }
+        }
+      )
+    }
   }, { scope: sectionRef })
 
-  const handleTabChange = (index) => {
-    if (index === activeIndex) return
-
-    const tl = gsap.timeline()
-    
-    // Smooth transition between tabs
-    tl.to('.skill-showcase-content', {
-      opacity: 0,
-      y: 12,
-      duration: 0.25,
-      ease: 'power2.in',
-    })
-    .call(() => {
-      setActiveIndex(index)
-    })
-    .to('.skill-showcase-content', {
-      opacity: 1,
-      y: 0,
-      duration: 0.45,
-      ease: 'power3.out',
-    })
-  }
-
   return (
-    <section id="skills" ref={sectionRef} className="section-padding bg-bg relative select-none">
+    <section id="skills" ref={sectionRef} className="py-32 md:py-48 bg-bg relative overflow-x-hidden w-full max-w-full select-none border-t border-black/5">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 lg:mb-24 border-b border-black/5 pb-12">
-          <div>
-            <p className="text-primary font-bold tracking-[0.4em] uppercase text-[10px] mb-4">Competencies</p>
-            <TextReveal as="h2" className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none uppercase">TECH STACK</TextReveal>
+        {/* Editorial Split Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          {/* Left Column: Pinned Sidebar Header & Intro Text */}
+          <div className="lg:col-span-4 lg:sticky lg:top-32 h-fit space-y-10">
+            <div className="space-y-6">
+              <div className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                <span className="font-mono text-xs uppercase tracking-widest text-text-muted">SYSTEM CAPABILITIES</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl lg:text-[48px] font-satoshi font-black leading-[1.05] tracking-tighter uppercase text-primary max-w-sm">
+                ENGINEERING HIGH-CALIBER SYSTEMS THAT SCALE.
+              </h2>
+            </div>
+
+            <p ref={revealParagraphRef} className="text-[17px] text-text-muted font-satoshi leading-relaxed max-w-md">
+              {introWords.map((word, i) => (
+                <span key={i} className="scrub-word inline-block mr-1.5 opacity-10 transition-opacity duration-300">
+                  {word}
+                </span>
+              ))}
+            </p>
           </div>
-          <div className="text-left md:text-right">
-            <p className="text-text-muted text-base md:text-lg max-w-[320px] leading-relaxed">Engineered for high-availability and extreme performance.</p>
+
+          {/* Right Column: Interactive Horizontal/Vertical Accordion */}
+          <div ref={accordionRef} className="lg:col-span-8 w-full space-y-4">
+            
+            {/* Desktop Horizontal Accordion Layout */}
+            <div className="hidden lg:flex h-[520px] w-full gap-3 overflow-hidden">
+              {skillGroups.map((group, index) => {
+                const isExpanded = expandedIndex === index
+                const Icon = group.icon
+                
+                return (
+                  <div
+                    key={group.category}
+                    onMouseEnter={() => setExpandedIndex(index)}
+                    className={`accordion-slice relative h-full border rounded-3xl p-6 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden cursor-pointer ${
+                      isExpanded 
+                        ? 'flex-[4] bg-surface border-black/20 shadow-[0_30px_60px_rgba(0,0,0,0.03)]' 
+                        : 'flex-[1] bg-surface/30 border-black/5 hover:bg-surface/50 hover:border-black/10'
+                    }`}
+                  >
+                    {/* Collapsed State Visual */}
+                    <div className={`absolute inset-0 flex flex-col items-center justify-between py-10 transition-opacity duration-500 pointer-events-none ${
+                      isExpanded ? 'opacity-0 scale-95' : 'opacity-100 scale-100'
+                    }`}>
+                      <span className="font-mono text-xs text-text-muted font-bold">0{index + 1}</span>
+                      <div className="flex flex-col items-center gap-8">
+                        <Icon className="w-5 h-5 text-text-muted" />
+                        <span 
+                          className="font-satoshi text-lg font-black uppercase tracking-widest text-text-muted/50 whitespace-nowrap select-none"
+                          style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}
+                        >
+                          {group.category}
+                        </span>
+                      </div>
+                      <span className="w-1.5 h-1.5 rounded-full bg-black/20" />
+                    </div>
+
+                    {/* Expanded State Visual */}
+                    <div className={`h-full flex flex-col justify-between transition-all duration-500 delay-100 ${
+                      isExpanded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 pointer-events-none'
+                    }`}>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-start">
+                          <div className="flex items-center gap-3">
+                            <span className="font-mono text-sm text-primary font-bold">0{index + 1}</span>
+                            <div className="px-2.5 py-0.5 bg-black text-white text-[8px] font-bold tracking-widest rounded-full uppercase">
+                              Active
+                            </div>
+                          </div>
+                          <Icon className="w-5 h-5 text-primary" />
+                        </div>
+                        
+                        <h3 className="text-2xl font-satoshi font-black tracking-tight uppercase text-primary">
+                          {group.category}
+                        </h3>
+                        
+                        <p className="text-sm text-text-muted font-satoshi leading-relaxed max-w-md">
+                          {group.desc}
+                        </p>
+                      </div>
+
+                      {/* Custom Dynamic Visual component */}
+                      <div className="my-6 h-[200px] w-full relative rounded-2xl overflow-hidden bg-bg/40 border border-black/5 hover:border-black/10 transition-colors duration-300">
+                        <SkillActiveVisual index={index} />
+                      </div>
+
+                      {/* Capabilities pill tags */}
+                      <div className="space-y-2 shrink-0">
+                        <span className="font-mono text-[9px] tracking-widest text-text-muted uppercase font-bold">CORE SKILLS</span>
+                        <div className="flex flex-wrap gap-2">
+                          {group.skills.map((skill) => (
+                            <span 
+                              key={skill} 
+                              className="text-[9px] font-bold tracking-wider uppercase px-2.5 py-1 bg-black/5 border border-black/5 rounded-md text-text-muted hover:text-text hover:border-black/10 transition-colors duration-300"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Mobile Vertical Accordion Layout */}
+            <div className="lg:hidden flex flex-col gap-3">
+              {skillGroups.map((group, index) => {
+                const isExpanded = expandedIndex === index
+                const Icon = group.icon
+                
+                return (
+                  <div
+                    key={group.category}
+                    onClick={() => setExpandedIndex(isExpanded ? -1 : index)}
+                    className="border border-black/10 rounded-2xl bg-surface p-5 transition-all duration-300 overflow-hidden"
+                  >
+                    <div className="flex justify-between items-center cursor-pointer">
+                      <div className="flex items-center gap-3">
+                        <span className="font-mono text-xs text-text-muted">0{index + 1}</span>
+                        <h4 className="text-base font-satoshi font-black uppercase text-primary">{group.category}</h4>
+                      </div>
+                      <Icon className="w-5 h-5 text-text-muted" />
+                    </div>
+                    
+                    {isExpanded && (
+                      <div className="mt-5 space-y-6">
+                        <p className="text-sm text-text-muted leading-relaxed">{group.desc}</p>
+                        
+                        <div className="h-[180px] w-full relative rounded-xl overflow-hidden bg-bg/50 border border-black/5">
+                          <SkillActiveVisual index={index} />
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <span className="font-mono text-[9px] tracking-widest text-text-muted uppercase font-bold">CORE SKILLS</span>
+                          <div className="flex flex-wrap gap-2">
+                            {group.skills.map((skill) => (
+                              <span 
+                                key={skill} 
+                                className="text-[9px] font-bold tracking-wider uppercase px-2.5 py-1 bg-black/5 border border-black/5 rounded text-text-muted"
+                              >
+                                {skill}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+
           </div>
         </div>
 
-        {/* Tabbed Interactive Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-          
-          {/* Left Column: Vertical Segmented Tab List (Desktop) / Horizontal Tabs (Mobile) */}
-          <div className="col-span-12 lg:col-span-6 xl:col-span-5 w-full">
-            {/* Desktop vertical layout */}
-            <div className="hidden lg:flex flex-col gap-10 py-6">
-              {skillGroups.map((group, index) => (
-                <button
-                  key={group.category}
-                  onMouseEnter={() => handleTabChange(index)}
-                  onClick={() => handleTabChange(index)}
-                  className="text-left group relative py-2 focus:outline-none"
-                >
-                  <div className="flex items-baseline gap-4">
-                    <span className="skill-tab-item font-mono text-xs text-accent/60 group-hover:text-primary transition-colors">
-                      0{index + 1}
-                    </span>
-                    <span className={`skill-tab-item font-display text-2xl sm:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black uppercase tracking-tighter transition-all duration-300 ${
-                      activeIndex === index 
-                        ? 'text-primary translate-x-4 scale-[1.03]' 
-                        : 'text-text-muted opacity-40 hover:opacity-75'
-                    }`}>
-                      {group.category}
-                    </span>
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile horizontal scrolling tabs wrapper */}
-            <div className="lg:hidden flex overflow-x-auto gap-4 pb-4 scrollbar-none snap-x pointer-events-auto">
-              {skillGroups.map((group, index) => (
-                <button
-                  key={group.category}
-                  onClick={() => handleTabChange(index)}
-                  className={`snap-center shrink-0 uppercase px-4 py-2 border rounded-full font-mono text-[10px] font-bold tracking-wider transition-all duration-300 ${
-                    activeIndex === index 
-                      ? 'bg-black text-white border-black' 
-                      : 'bg-transparent text-text-muted border-black/10 hover:border-black/30'
-                  }`}
-                >
-                  0{index + 1} {group.category}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Right Column: Dynamic Double-Bezel Showcase Card */}
-          <div className="col-span-12 lg:col-span-6 xl:col-span-7 w-full skill-showcase-card">
-            <div className="rounded-[2.5rem] bg-black/5 p-2 border border-black/10 shadow-[0_20px_50px_rgba(0,0,0,0.02)]">
+        {/* Dynamic Infinite Marquee at the bottom of the section */}
+        <div className="w-full overflow-hidden py-6 border-y border-black/5 mt-24 relative select-none">
+          <div className="flex w-full overflow-hidden">
+            <div className="animate-marquee whitespace-nowrap flex gap-12 text-xs font-satoshi font-black tracking-[0.3em] uppercase text-text-muted/30">
+              <span>DISTRIBUTED SYSTEMS</span>
+              <span>•</span>
+              <span>LOW-LEVEL OPTIMIZATION</span>
+              <span>•</span>
+              <span>HIGH-PERFORMANCE COMPILERS</span>
+              <span>•</span>
+              <span>RUST & GO PARADIGMS</span>
+              <span>•</span>
+              <span>HARDWARE-ACCELERATED MOTION</span>
+              <span>•</span>
+              <span>GRAPH RESOLVER NODES</span>
+              <span>•</span>
+              <span>HYPER-SCALING TOPOLOGIES</span>
+              <span>•</span>
               
-              {/* Inner core container */}
-              <div className="rounded-[calc(2.5rem-0.5rem)] bg-surface p-8 md:p-12 lg:p-14 border border-black/10 min-h-[500px] md:min-h-[580px] lg:min-h-[640px] flex flex-col justify-between gap-10 md:gap-14 relative overflow-hidden">
-                
-                {/* Dynamic animated showcase visual */}
-                <div className="skill-showcase-content h-[220px] md:h-[260px] lg:h-[290px] w-full shrink-0 flex items-center justify-center z-10 relative">
-                  <SkillActiveVisual index={activeIndex} />
-                </div>
-
-                {/* Showcased Content Details */}
-                <div className="skill-showcase-content flex-1 flex flex-col justify-between gap-6 z-10">
-                  <div className="space-y-4 md:space-y-5">
-                    <div className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                      <span className="text-primary font-mono text-[9px] tracking-widest uppercase font-bold">Category_0{activeIndex+1}</span>
-                    </div>
-                    <h3 className="text-2xl sm:text-3xl font-display font-bold text-text leading-none uppercase">
-                      {activeGroup.category} Overview
-                    </h3>
-                    <p className="text-text-muted text-sm md:text-base leading-relaxed max-w-xl">
-                      {activeGroup.desc}
-                    </p>
-                  </div>
-
-                  {/* Competency tags */}
-                  <div className="flex flex-wrap gap-3 border-t border-black/5 pt-8 mt-6">
-                    {activeGroup.skills.map((skill) => (
-                      <span 
-                        key={skill} 
-                        className="text-[9px] md:text-[10px] font-bold tracking-wider uppercase px-3.5 py-2 bg-black/5 border border-black/5 rounded-md text-text-muted hover:text-text hover:border-black/10 transition-colors"
-                      >
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-              </div>
+              <span>DISTRIBUTED SYSTEMS</span>
+              <span>•</span>
+              <span>LOW-LEVEL OPTIMIZATION</span>
+              <span>•</span>
+              <span>HIGH-PERFORMANCE COMPILERS</span>
+              <span>•</span>
+              <span>RUST & GO PARADIGMS</span>
+              <span>•</span>
+              <span>HARDWARE-ACCELERATED MOTION</span>
+              <span>•</span>
+              <span>GRAPH RESOLVER NODES</span>
+              <span>•</span>
+              <span>HYPER-SCALING TOPOLOGIES</span>
+              <span>•</span>
             </div>
           </div>
-
         </div>
 
       </div>
