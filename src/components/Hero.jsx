@@ -12,7 +12,7 @@ export default function Hero() {
     // Initial page load reveal sequence
     const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.2 } })
 
-    gsap.set(imgRef.current, { opacity: 0, y: 70, scale: 0.96 })
+    gsap.set(imgRef.current, { opacity: 0, y: 70 })
     gsap.set('.hero-top-el', { opacity: 0, y: -20 })
     gsap.set('.hero-bottom-left', { opacity: 0, x: -30 })
     gsap.set('.hero-bottom-right', { opacity: 0, x: 30 })
@@ -21,7 +21,6 @@ export default function Hero() {
     tl.to(imgRef.current, {
       opacity: 1,
       y: 0,
-      scale: 1,
       duration: 1.5,
     })
     .to([nameRef.current, nameOutlineRef.current], {
@@ -102,9 +101,11 @@ export default function Hero() {
       </div>
 
       {/* Centered Portrait Image (z-20: Layers in middle) */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[440px] md:max-w-[480px] xl:max-w-[530px] h-[85vh] md:h-[90vh] z-20 pointer-events-none flex items-end justify-center overflow-visible">
+      <div 
+        ref={imgRef}
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[440px] md:max-w-[480px] xl:max-w-[530px] h-[85vh] md:h-[90vh] z-20 pointer-events-none flex items-end justify-center overflow-visible"
+      >
         <img 
-          ref={imgRef}
           src="/hero-portrait.png" 
           alt="Dharshan Balaji"
           className="hero-char-img h-[90%] object-contain object-bottom filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.15)]"
