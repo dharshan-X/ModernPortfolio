@@ -28,8 +28,8 @@ function App() {
     // Recalculate ScrollTrigger positions once content is rendered and visible
     ScrollTrigger.refresh()
     
-    // Select all sections except hero
-    const sections = gsap.utils.toArray('section:not(#hero)')
+    // Select all sections except hero and experience (which has horizontal scroll pinning)
+    const sections = gsap.utils.toArray('section:not(#hero):not(#experience)')
     
     sections.forEach((section, i) => {
       gsap.fromTo(section, 

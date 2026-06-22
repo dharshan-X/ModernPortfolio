@@ -12,6 +12,9 @@ export default function LoadingScreen({ onComplete }) {
   const lineRightRef = useRef(null)
   const coordsRef = useRef([])
   const scanLineRef = useRef(null)
+  const handRef = useRef(null)
+  const handGroupRef = useRef(null)
+  const ticksRefs = useRef([])
 
   const name = 'DHARSHAN'
 
@@ -37,15 +40,13 @@ export default function LoadingScreen({ onComplete }) {
 
           exit.to([counterRef.current, subtitleRef.current, lineLeftRef.current, lineRightRef.current], {
             opacity: 0,
-            scale: 0.8,
             duration: 0.4,
             ease: 'power3.in',
           }, 0)
 
-          exit.to([ringRef.current, ringBgRef.current], {
+          exit.to([ringRef.current, ringBgRef.current, handGroupRef.current], {
             opacity: 0,
-            scale: 1.8,
-            duration: 0.7,
+            duration: 0.5,
             ease: 'power3.in',
           }, 0.1)
 
@@ -54,13 +55,12 @@ export default function LoadingScreen({ onComplete }) {
             duration: 0.3,
           }, 0)
 
-          // Final container scale-punch
+          // Final container fade (solid, no-shake fade-out transition)
           exit.to(containerRef.current, {
-            scale: 0.95,
             opacity: 0,
             duration: 0.5,
-            ease: 'power4.in',
-          }, 0.5)
+            ease: 'power3.inOut',
+          }, 0.4)
         }
       })
 
@@ -125,9 +125,30 @@ export default function LoadingScreen({ onComplete }) {
         duration: 2.8,
         ease: 'power2.inOut',
         onUpdate: () => {
+          const val = Math.round(counter.value)
+          
           if (counterRef.current) {
-            counterRef.current.innerText = String(Math.round(counter.value)).padStart(3, '0')
+            counterRef.current.innerText = String(val).padStart(3, '0')
           }
+
+          if (handRef.current) {
+            const angle = (counter.value / 100) * 360
+            handRef.current.setAttribute('transform', `rotate(${angle} 100 100)`)
+          }
+
+          // Light up ticks clockwise
+          const progressTickCount = Math.floor((counter.value / 100) * 60)
+          ticksRefs.current.forEach((tick, idx) => {
+            if (tick) {
+              if (idx < progressTickCount) {
+                tick.setAttribute('stroke', 'rgba(0,0,0,0.85)')
+                tick.setAttribute('stroke-width', idx % 5 === 0 ? '1.5' : '1')
+              } else {
+                tick.setAttribute('stroke', idx % 5 === 0 ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.06)')
+                tick.setAttribute('stroke-width', idx % 5 === 0 ? '1' : '0.5')
+              }
+            }
+          })
         },
       }, 0.5)
 
@@ -165,7 +186,8 @@ export default function LoadingScreen({ onComplete }) {
         <span
           key={label}
           ref={el => coordsRef.current[i] = el}
-          className={`absolute ${pos} text-[9px] font-mono text-text-muted tracking-widest uppercase`}
+          className="absolute text-[9px] font-mono text-text-muted tracking-widest uppercase"
+          style={{ [pos.split(' ')[0]]: '1.25rem', [pos.split(' ')[1]]: '1.5rem' }}
         >
           {label}
         </span>
@@ -183,6 +205,15 @@ export default function LoadingScreen({ onComplete }) {
             strokeDasharray="565"
             strokeDashoffset="565"
           />
+
+          {/* Inner accent ring */}
+          <circle
+            cx="100" cy="100" r="80"
+            stroke="rgba(0,0,0,0.03)"
+            strokeWidth="0.5"
+            strokeDasharray="2 2"
+          />
+
           {/* Tick marks around the ring */}
           {Array.from({ length: 60 }).map((_, i) => {
             const angle = (i / 60) * Math.PI * 2 - Math.PI / 2
@@ -192,25 +223,44 @@ export default function LoadingScreen({ onComplete }) {
             return (
               <line
                 key={i}
+                ref={el => ticksRefs.current[i] = el}
                 x1={100 + Math.cos(angle) * r1}
                 y1={100 + Math.sin(angle) * r1}
                 x2={100 + Math.cos(angle) * r2}
                 y2={100 + Math.sin(angle) * r2}
-                stroke={isMajor ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.08)'}
+                stroke={isMajor ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.06)'}
                 strokeWidth={isMajor ? 1 : 0.5}
               />
             )
           })}
+
+          {/* Sweeping second hand dial wrapper to prevent GSAP transform conflict */}
+          <g ref={handGroupRef}>
+            <g ref={handRef} transform="rotate(0 100 100)">
+              {/* The exclamation mark bar (tapered trapezoid, broader at the top, sharp corners, extended below) */}
+              <polygon
+                points="96,18 104,18 102,84 98,84"
+                fill="rgba(0,0,0,0.85)"
+              />
+              {/* The exclamation mark dot (circle pivot cap at center) */}
+              <circle
+                cx="100"
+                cy="100"
+                r="5"
+                fill="rgba(0,0,0,0.85)"
+              />
+            </g>
+          </g>
         </svg>
       </div>
 
       {/* Rotating progress arc */}
-      <div className="absolute w-[280px] h-[280px] md:w-[380px] md:h-[380px]">
+      <div className="absolute w-[280px] h-[280px] md:w-[380px] md:h-[380px] pointer-events-none">
         <svg ref={ringRef} viewBox="0 0 200 200" className="w-full h-full" fill="none">
           <circle
             cx="100" cy="100" r="90"
-            stroke="rgba(0,0,0,0.5)"
-            strokeWidth="1.5"
+            stroke="rgba(0,0,0,0.4)"
+            strokeWidth="1.2"
             strokeDasharray="565"
             strokeDashoffset="500"
             strokeLinecap="round"
@@ -226,7 +276,7 @@ export default function LoadingScreen({ onComplete }) {
             <span
               key={i}
               ref={el => charRefs.current[i] = el}
-              className="text-[2.5rem] md:text-[4.5rem] font-display font-bold text-primary leading-none inline-block"
+              className="text-[2.5rem] md:text-[4.5rem] font-satoshi font-black text-primary leading-none inline-block tracking-tighter"
               style={{ perspective: '400px' }}
             >
               {char}
@@ -244,7 +294,7 @@ export default function LoadingScreen({ onComplete }) {
         {/* Subtitle */}
         <p
           ref={subtitleRef}
-          className="mt-5 text-[9px] md:text-[10px] uppercase text-text-muted font-mono tracking-[0.3em]"
+          className="mt-5 text-[9px] md:text-[10px] uppercase text-text-muted font-satoshi tracking-[0.3em] font-extrabold"
         >
           Full-Stack Engineer
         </p>
@@ -254,7 +304,7 @@ export default function LoadingScreen({ onComplete }) {
       <div className="absolute bottom-12 md:bottom-16 flex flex-col items-center gap-1">
         <span
           ref={counterRef}
-          className="text-[56px] md:text-[80px] font-display font-bold leading-none tabular-nums text-black/[0.04]"
+          className="text-[56px] md:text-[80px] font-satoshi font-black leading-none tabular-nums text-black/[0.05] tracking-tight"
         >
           000
         </span>
