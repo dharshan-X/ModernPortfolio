@@ -77,7 +77,7 @@ export default function Hero() {
         </div>
 
         {/* Top Middle: Minimal Brand Accent */}
-        <div className="hero-top-el text-black font-mono text-[10px] md:text-[11px] font-black uppercase tracking-[0.3em] flex items-center gap-1.5">
+        <div className="hero-top-el text-black font-mono text-[10px] md:text-[11px] font-black uppercase tracking-[0.3em] hidden sm:flex items-center gap-1.5">
           <div className="w-2.5 h-2.5 bg-black rotate-45" />
           <span>Dharshan Balaji</span>
         </div>
@@ -93,8 +93,8 @@ export default function Hero() {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 select-none">
         <h1 
           ref={nameRef}
-          className="w-full text-center font-satoshi font-black text-[13vw] leading-none text-black tracking-tighter uppercase select-none"
-          style={{ transform: 'translateY(-10dvh)' }}
+          className="w-full text-center font-satoshi font-black leading-none text-black tracking-tighter uppercase select-none"
+          style={{ transform: 'translateY(-10dvh)', fontSize: 'clamp(48px, 13vw, 180px)' }}
         >
           Dharshan
         </h1>
@@ -103,7 +103,7 @@ export default function Hero() {
       {/* Centered Portrait Image (z-20: Layers in middle) */}
       <div 
         ref={imgRef}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[440px] md:max-w-[480px] xl:max-w-[530px] h-[85vh] md:h-[90vh] z-20 pointer-events-none flex items-end justify-center overflow-visible"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[440px] md:max-w-[480px] xl:max-w-[530px] h-[75dvh] md:h-[85dvh] z-20 pointer-events-none flex items-end justify-center overflow-visible"
       >
         <img 
           src="/hero-portrait.png" 
@@ -116,9 +116,10 @@ export default function Hero() {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-30 select-none">
         <h1 
           ref={nameOutlineRef}
-          className="w-full text-center font-satoshi font-black text-[13vw] leading-none tracking-tighter uppercase select-none"
+          className="w-full text-center font-satoshi font-black leading-none tracking-tighter uppercase select-none"
           style={{ 
             transform: 'translateY(-10dvh)',
+            fontSize: 'clamp(48px, 13vw, 180px)',
             WebkitTextStroke: '1.2px rgba(255,255,255,0.7)',
             color: 'transparent',
             textFillColor: 'transparent'
@@ -141,7 +142,7 @@ export default function Hero() {
       </div>
 
       {/* Bottom Content Area (Overlaying Black Section) */}
-      <div className="relative w-full px-6 md:px-12 pb-10 md:pb-16 flex flex-col md:flex-row justify-between items-end gap-10 md:gap-0 z-40">
+      <div className="relative w-full px-6 md:px-12 pb-10 md:pb-16 flex flex-col md:flex-row justify-between items-end gap-6 md:gap-0 z-40">
         
         {/* Bottom Left: Bio Details & Translations */}
         <div className="hero-bottom-left flex flex-col gap-6 text-left max-w-sm md:max-w-md">
@@ -169,7 +170,7 @@ export default function Hero() {
           <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-white/50 font-bold">
             SOFTWARE ENGINEER
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-[46px] font-satoshi font-black leading-[0.9] tracking-tighter uppercase">
+          <h2 className="text-2xl sm:text-4xl md:text-[46px] font-satoshi font-black leading-[0.9] tracking-tighter uppercase">
             Dharshan Balaji
           </h2>
         </div>

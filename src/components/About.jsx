@@ -47,11 +47,11 @@ export default function About() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(0,0,0,0.015),transparent_40%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-12 md:gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-6 md:gap-12 lg:gap-16 items-start">
           
           {/* Sticky Header Column (Enhanced Original) */}
           <div className="lg:col-span-4 lg:sticky lg:top-32 relative z-10">
-            <h2 className="text-[50px] sm:text-[70px] md:text-[90px] font-outfit font-black leading-[0.9] tracking-tighter uppercase text-primary mb-6">
+            <h2 className="text-[36px] sm:text-[50px] md:text-[70px] lg:text-[90px] font-outfit font-black leading-[0.9] tracking-tighter uppercase text-primary mb-6">
               THE <br />
               <span className="text-glow opacity-60">VISION</span>
             </h2>
@@ -64,7 +64,7 @@ export default function About() {
               
               {/* Text, Philosophy & Stats */}
               <div className="space-y-8">
-                <div className="space-y-6 text-xl text-text-muted leading-relaxed font-outfit font-medium">
+                <div className="space-y-6 text-base md:text-xl text-text-muted leading-relaxed font-outfit font-medium">
                   {/* GSAP Word Reveal Paragraph */}
                   <p ref={paragraphRef} className="text-text select-none">
                     {bioWords.map((word, i) => (
@@ -88,7 +88,7 @@ export default function About() {
                 <div className="grid grid-cols-2 gap-6 pt-8 border-t border-black/10">
                   {stats.map((stat) => (
                     <div key={stat.label} className="group/stat">
-                      <p className="text-3xl font-outfit font-black text-primary mb-1 group-hover/stat:translate-x-1 transition-transform duration-300">
+                      <p className="text-2xl md:text-3xl font-outfit font-black text-primary mb-1 group-hover/stat:translate-x-1 transition-transform duration-300">
                         {stat.value}
                       </p>
                       <p className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-extrabold font-outfit">

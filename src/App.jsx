@@ -34,7 +34,7 @@ function App() {
     sections.forEach((section, i) => {
       gsap.fromTo(section, 
         { 
-          x: i % 2 === 0 ? 150 : -150, 
+          x: i % 2 === 0 ? (window.innerWidth < 640 ? 40 : 150) : (window.innerWidth < 640 ? -40 : -150), 
           autoAlpha: 0 
         },
         {

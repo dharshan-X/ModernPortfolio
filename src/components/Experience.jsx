@@ -306,9 +306,9 @@ export default function Experience() {
       >
         
         {/* Slide 0: Section Intro Card */}
-        <div className="w-full lg:w-[400px] shrink-0 flex flex-col justify-center space-y-4 pr-12 border-b border-black/5 pb-8 lg:border-b-0 lg:pb-0 lg:border-r lg:border-black/5 lg:h-[60dvh]">
+        <div className="w-full lg:w-[400px] shrink-0 flex flex-col justify-center space-y-4 pr-0 lg:pr-12 border-b border-black/5 pb-8 lg:border-b-0 lg:pb-0 lg:border-r lg:border-black/5 lg:h-[60dvh]">
           <p className="text-primary font-bold tracking-[0.4em] uppercase text-xs">Technical Roadmap</p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-bold leading-none uppercase">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-display font-bold leading-none uppercase">
             MILESTONES
           </h2>
           <p className="text-text-muted text-base leading-relaxed">
@@ -324,15 +324,15 @@ export default function Experience() {
         {experiences.map((exp, i) => (
           <div 
             key={i} 
-            className="w-full lg:w-[600px] shrink-0 bg-surface border border-black/10 rounded-[2.5rem] p-6 md:p-10 flex flex-col justify-between gap-6 shadow-[0_20px_50px_rgba(0,0,0,0.03)] hover:border-black/15 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 lg:h-[70dvh] relative overflow-hidden"
+            className="w-full lg:w-[600px] shrink-0 bg-surface border border-black/10 rounded-2xl md:rounded-[2.5rem] p-6 md:p-10 flex flex-col justify-between gap-6 shadow-[0_20px_50px_rgba(0,0,0,0.03)] hover:border-black/15 hover:shadow-[0_20px_50px_rgba(0,0,0,0.06)] transition-all duration-500 lg:h-[70dvh] relative overflow-hidden"
           >
             {/* Year Watermark */}
-            <div className="absolute right-8 top-6 text-7xl md:text-9xl font-display font-bold text-black/5 select-none z-0">
+            <div className="absolute right-8 top-6 text-5xl md:text-7xl lg:text-9xl font-display font-bold text-black/5 select-none z-0">
               {exp.year}
             </div>
 
             {/* Top Half: Visual */}
-            <div className="h-[200px] md:h-[240px] lg:h-[45%] w-full relative z-10 flex items-center justify-center shrink-0">
+            <div className="h-[160px] md:h-[200px] lg:h-[240px] lg:h-[45%] w-full relative z-10 flex items-center justify-center shrink-0">
               <MilestoneVisual index={i} />
             </div>
 

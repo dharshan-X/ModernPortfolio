@@ -383,7 +383,7 @@ export default function Skills() {
   }, { scope: sectionRef })
 
   return (
-    <section id="skills" ref={sectionRef} className="py-32 md:py-48 bg-bg relative overflow-x-hidden w-full max-w-full select-none border-t border-black/5">
+    <section id="skills" ref={sectionRef} className="py-16 sm:py-24 md:py-48 bg-bg relative overflow-x-hidden w-full max-w-full select-none border-t border-black/5">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Editorial Split Layout */}
@@ -397,7 +397,7 @@ export default function Skills() {
                 <span className="font-mono text-xs uppercase tracking-widest text-text-muted">SYSTEM CAPABILITIES</span>
               </div>
               
-              <h2 className="text-4xl md:text-5xl lg:text-[48px] font-satoshi font-black leading-[1.05] tracking-tighter uppercase text-primary max-w-sm">
+              <h2 className="text-3xl md:text-5xl lg:text-[48px] font-satoshi font-black leading-[1.05] tracking-tighter uppercase text-primary max-w-sm">
                 ENGINEERING HIGH-CALIBER SYSTEMS THAT SCALE.
               </h2>
             </div>
@@ -548,7 +548,7 @@ export default function Skills() {
         </div>
 
         {/* Dynamic Infinite Marquee at the bottom of the section */}
-        <div className="w-full overflow-hidden py-6 border-y border-black/5 mt-24 relative select-none">
+        <div className="w-full overflow-hidden py-6 border-y border-black/5 mt-12 md:mt-24 relative select-none">
           <div className="flex w-full overflow-hidden">
             <div className="animate-marquee whitespace-nowrap flex gap-12 text-xs font-satoshi font-black tracking-[0.3em] uppercase text-text-muted/30">
               <span>DISTRIBUTED SYSTEMS</span>

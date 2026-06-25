@@ -43,7 +43,13 @@
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.04em;
-    line-height: 1;
+    line-height: 1.1;
+  }
+
+  @media (pointer: fine) {
+    *, *::before, *::after {
+      cursor: none !important;
+    }
   }
 }
 
@@ -61,7 +67,7 @@
   }
 
   .section-padding {
-    @apply py-32 md:py-48;
+    @apply py-16 sm:py-24 md:py-48;
   }
 }
 

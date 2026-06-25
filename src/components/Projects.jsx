@@ -76,8 +76,8 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-8">
             <div>
-                <TextReveal as="h2" className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none mb-2 md:mb-4 uppercase">Selected</TextReveal>
-                <TextReveal as="h2" className="text-[40px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none mb-2 md:mb-4 uppercase gradient-text">Artifacts</TextReveal>
+                <TextReveal as="h2" className="text-[32px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none mb-2 md:mb-4 uppercase">Selected</TextReveal>
+                <TextReveal as="h2" className="text-[32px] sm:text-[50px] md:text-[80px] font-display font-bold leading-none mb-2 md:mb-4 uppercase gradient-text">Artifacts</TextReveal>
             </div>
             <p className="max-w-md text-text-muted text-base md:text-lg leading-relaxed text-left md:text-right">
               A showcase of my recent work in AI, Security, and Systems engineering.
@@ -93,7 +93,7 @@ export default function Projects() {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`project-card group bg-surface-light border border-black/5 hover:border-black/15 hover:shadow-[0_20px_40px_rgba(0,0,0,0.03)] rounded-[2.5rem] p-6 md:p-8 transition-all duration-500 flex flex-col justify-between gap-6 overflow-hidden
+                className={`project-card group bg-surface-light border border-black/5 hover:border-black/15 hover:shadow-[0_20px_40px_rgba(0,0,0,0.03)] rounded-2xl md:rounded-[2.5rem] p-6 md:p-8 transition-all duration-500 flex flex-col justify-between gap-6 overflow-hidden
                     ${isLarge ? 'md:col-span-2 md:flex-row md:gap-10' : 'md:col-span-1'}`}
               >
                 {/* Image Wrapper - Aspect Ratio Locked to prevent height collapse */}
