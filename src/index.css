@@ -89,6 +89,11 @@
   background: var(--color-primary);
 }
 
+/* Hide native scrollbar on the projects carousel track (Firefox uses inline style; WebKit/Blink need this) */
+[data-carousel-track]::-webkit-scrollbar {
+  display: none;
+}
+
 ::selection {
   background-color: var(--color-primary);
   color: white;
